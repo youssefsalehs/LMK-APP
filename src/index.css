@@ -128,3 +128,6 @@
     @apply font-sans;
   }
 }
+.submitButton {
+  @apply w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg transition-colors;
+}

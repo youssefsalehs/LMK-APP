@@ -1,0 +1,45 @@
+@reference "../../index.css";
+
+.layoutContainer {
+  @apply grid min-h-screen grid-cols-1 lg:grid-cols-2;
+}
+
+.brandSide {
+  @apply relative hidden lg:flex flex-col bg-linear-to-b from-[#8027F5] via-[#E727F5] to-[#F5279C] p-12 overflow-hidden border-r border-primary-foreground/20;
+}
+
+.brandContent {
+  @apply relative z-10 max-w-md space-y-4 my-auto;
+}
+
+.badge {
+  @apply inline-block px-3 py-1 text-xs font-semibold tracking-wide uppercase text-muted rounded-full border;
+}
+
+.heading {
+  @apply text-4xl font-extrabold tracking-tight leading-tight;
+}
+
+.description {
+  @apply text-muted text-base leading-relaxed;
+}
+
+.brandFooter {
+  @apply relative z-10 text-xs text-muted flex items-center justify-between;
+}
+
+.logoWrapper {
+  @apply relative z-10;
+}
+
+.contentSide {
+  @apply flex flex-col justify-between p-6 sm:p-10 lg:p-12;
+}
+
+.mobileHeader {
+  @apply flex justify-between items-center lg:hidden mb-8;
+}
+
+.mainWrapper {
+  @apply mx-auto w-full max-w-md my-auto space-y-6;
+}

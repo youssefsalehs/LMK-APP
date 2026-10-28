@@ -1,9 +1,8 @@
+import Footer from "@/components/footer/Footer";
 import Navbar from "@/components/navbar/Navbar";
-import ThemeBtn from "@/components/theme/ThemeBtn";
-import { Outlet } from "react-router";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { useState } from "react";
-import Footer from "@/components/footer/Footer";
+import { Outlet } from "react-router";
 
 export default function MainLayout() {
   const { scrollY } = useScroll();
@@ -34,7 +33,6 @@ export default function MainLayout() {
         <Outlet />
       </main>
       <Footer />
-      <ThemeBtn />
     </div>
   );
 }

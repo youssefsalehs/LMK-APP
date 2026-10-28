@@ -1,0 +1,52 @@
+@reference "../../../index.css";
+
+.container {
+  @apply space-y-6;
+}
+
+.header {
+  @apply space-y-2 text-center sm:text-left;
+}
+
+.title {
+  @apply text-2xl font-bold tracking-tight;
+}
+
+.subtitle {
+  @apply text-sm text-muted-foreground;
+}
+
+.form {
+  @apply space-y-4;
+}
+
+.fieldGroup {
+  @apply space-y-2 w-full;
+}
+
+.icon {
+  @apply h-4 w-4 text-muted-foreground;
+}
+
+.errorText {
+  @apply text-xs font-medium text-destructive;
+}
+
+.forgotPasswordWrapper {
+  @apply flex justify-end;
+}
+
+.forgotPasswordLink {
+  @apply text-xs font-medium text-purple-600 hover:text-purple-500 dark:text-purple-400 transition-colors;
+}
+
+.submitButton {
+  @apply w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg transition-colors;
+}
+
+.toggleButton {
+  @apply flex items-center justify-center text-muted-foreground hover:text-foreground focus:outline-none transition-colors;
+}
+.inputError {
+  @apply !border-destructive !ring-destructive focus-visible:!ring-destructive;
+}
