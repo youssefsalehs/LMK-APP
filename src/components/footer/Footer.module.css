@@ -17,7 +17,7 @@
 }
 
 .links a {
-  @apply hover:text-[#8027f5] transition duration-300 underline;
+  @apply hover:text-[#8027f5]  underline;
 }
 
 .bottomRow {

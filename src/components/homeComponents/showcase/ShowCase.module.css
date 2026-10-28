@@ -9,15 +9,15 @@
 }
 
 .cardOne {
-  @apply absolute top-2 left-2 md:top-4 md:left-12 -rotate-6 transition-transform hover:scale-105 duration-300 w-44 md:w-64 z-20;
+  @apply absolute top-2 left-2 md:top-4 md:left-12 -rotate-6  hover:scale-105  w-44 md:w-64 z-20;
 }
 
 .cardTwo {
-  @apply absolute top-0 right-2 md:top-0 md:left-1/2 md:-translate-x-1/2 rotate-3 transition-transform hover:scale-105 duration-300 w-44 md:w-64 z-20;
+  @apply absolute top-0 right-2 md:top-0 md:left-1/2 md:-translate-x-1/2 rotate-3  hover:scale-105  w-44 md:w-64 z-20;
 }
 
 .cardThree {
-  @apply hidden md:block absolute top-8 right-12 rotate-6 transition-transform hover:scale-105 duration-300 w-64 z-20;
+  @apply hidden md:block absolute top-8 right-12 rotate-6 hover:scale-105  w-64 z-20;
 }
 
 .profileContainer {
@@ -33,11 +33,11 @@
 }
 
 .cardFour {
-  @apply absolute bottom-12 left-0 md:bottom-4 md:left-16 rotate-3 transition-transform hover:scale-105 duration-300 w-44 md:w-64 z-20;
+  @apply absolute bottom-12 left-0 md:bottom-4 md:left-16 rotate-3  hover:scale-105  w-44 md:w-64 z-20;
 }
 
 .cardFive {
-  @apply absolute bottom-2 right-2 md:bottom-8 md:right-16 -rotate-3 transition-transform hover:scale-105 duration-300 w-44 md:w-64 z-20;
+  @apply absolute bottom-2 right-2 md:bottom-8 md:right-16 -rotate-3 hover:scale-105  w-44 md:w-64 z-20;
 }
 
 .titleText {

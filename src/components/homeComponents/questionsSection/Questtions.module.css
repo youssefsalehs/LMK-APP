@@ -16,5 +16,5 @@
 }
 
 .container > div ul li {
-  @apply hover:text-[#8027F5] font-bold transition-colors duration-300 cursor-pointer;
+  @apply hover:text-[#8027F5] font-bold  cursor-pointer;
 }

@@ -5,7 +5,7 @@
 }
 
 .header {
-  @apply bg-linear-to-tr py-4 from-[#8027F5] via-[#E727F5] to-[#F5279C] text-center text-primary-foreground font-bold;
+  @apply bg-linear-to-tr py-4 from-[#8027F5] via-[#E727F5] to-[#F5279C] text-center  font-bold;
 }
 
 .headerText {
@@ -13,5 +13,5 @@
 }
 
 .content {
-  @apply py-5 px-4 text-center font-medium text-primary-foreground;
+  @apply py-5 px-4 text-center font-medium;
 }
