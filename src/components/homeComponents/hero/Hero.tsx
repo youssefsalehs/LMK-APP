@@ -1,7 +1,7 @@
 import Navbar from "@/components/navbar/Navbar";
-import styles from "./Hero.module.css";
-import { Button } from "@/components/ui/button";
 import { motion } from "motion/react";
+import { Link } from "react-router";
+import styles from "./Hero.module.css";
 
 const float = {
   animate: { y: [0, -20, 0] },
@@ -26,7 +26,9 @@ export default function Hero() {
 
         <div className={styles.content}>
           <p className={styles.title}>Keep it real, keep it fun</p>
-          <Button className={styles.cta}>Get Started</Button>
+          <Link to="/auth/register" className={styles.cta}>
+            Get Started
+          </Link>
         </div>
 
         <div className={styles.imageWrapper}>

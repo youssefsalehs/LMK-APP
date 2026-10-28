@@ -8,33 +8,32 @@ import AuthLayout from "./layouts/authLayout/AuthLayout";
 import ThemeBtn from "./components/theme/ThemeBtn";
 import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
 import Register from "./pages/register/Register";
-
+const router = createBrowserRouter([
+  {
+    path: "",
+    element: <MainLayout />,
+    children: [{ index: true, element: <Home /> }],
+  },
+  {
+    path: "/auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "forgot-password",
+        element: <ForgotPassword />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+    ],
+  },
+]);
 function App() {
-  const router = createBrowserRouter([
-    {
-      path: "",
-      element: <MainLayout />,
-      children: [{ index: true, element: <Home /> }],
-    },
-    {
-      path: "/auth",
-      element: <AuthLayout />,
-      children: [
-        {
-          path: "login",
-          element: <Login />,
-        },
-        {
-          path: "forgot-password",
-          element: <ForgotPassword />,
-        },
-        {
-          path: "register",
-          element: <Register />,
-        },
-      ],
-    },
-  ]);
   return (
     <>
       <ThemeBtn />

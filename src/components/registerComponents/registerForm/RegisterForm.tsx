@@ -1,5 +1,4 @@
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
-
 import type { TregisterData } from "@/types/registerData";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/schemas/registerSchema";
