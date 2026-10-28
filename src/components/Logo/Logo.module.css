@@ -1,0 +1,5 @@
+@reference "../../index.css";
+
+.logo {
+  @apply w-20 object-cover -skew-4;
+}

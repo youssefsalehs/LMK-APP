@@ -1,0 +1,8 @@
+@reference "../../index.css";
+.nav {
+  @apply p-6 flex justify-between items-center;
+}
+
+.nav ul {
+  @apply flex justify-between gap-8 text-xl font-bold;
+}

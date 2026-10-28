@@ -1,0 +1,25 @@
+@reference "../../index.css";
+
+.footer {
+  @apply w-full  px-6 py-8;
+}
+
+.container {
+  @apply space-y-16;
+}
+
+.topRow {
+  @apply flex flex-col items-center justify-between gap-4 sm:flex-row;
+}
+
+.links {
+  @apply flex items-center gap-6 text-2xl font-extrabold;
+}
+
+.links a {
+  @apply hover:text-[#8027f5] transition duration-300;
+}
+
+.bottomRow {
+  @apply flex justify-between font-extrabold text-2xl tracking-tight;
+}

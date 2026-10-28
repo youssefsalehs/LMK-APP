@@ -1,0 +1,45 @@
+@reference "../../../index.css";
+
+.container {
+  @apply flex flex-col items-center justify-center shadow-2xl bg-linear-to-b p-8 from-[#8027F5] via-[#E727F5] to-[#F5279C] min-h-screen overflow-hidden;
+}
+
+.scatterContainer {
+  @apply relative w-full max-w-2xl md:max-w-5xl mx-auto h-[420px] md:h-[460px];
+}
+
+.cardOne {
+  @apply absolute top-2 left-2 md:top-4 md:left-12 -rotate-6 transition-transform hover:scale-105 duration-300 w-44 md:w-64 z-20;
+}
+
+.cardTwo {
+  @apply absolute top-0 right-2 md:top-0 md:left-1/2 md:-translate-x-1/2 rotate-3 transition-transform hover:scale-105 duration-300 w-44 md:w-64 z-20;
+}
+
+.cardThree {
+  @apply hidden md:block absolute top-8 right-12 rotate-6 transition-transform hover:scale-105 duration-300 w-64 z-20;
+}
+
+.profileContainer {
+  @apply absolute top-[42%] md:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center items-center z-30;
+}
+
+.selfieOne {
+  @apply w-24 h-24 md:w-32 md:h-32 rounded-full object-cover aspect-square relative z-10 shadow-2xl border-4 border-white -rotate-6;
+}
+
+.selfieTwo {
+  @apply w-32 h-32 md:w-44 md:h-44 rounded-full object-cover aspect-square relative -ml-8 mt-5 md:-ml-10 md:mt-6 z-20 shadow-2xl border-4 border-white rotate-6;
+}
+
+.cardFour {
+  @apply absolute bottom-12 left-0 md:bottom-4 md:left-16 rotate-3 transition-transform hover:scale-105 duration-300 w-44 md:w-64 z-20;
+}
+
+.cardFive {
+  @apply absolute bottom-2 right-2 md:bottom-8 md:right-16 -rotate-3 transition-transform hover:scale-105 duration-300 w-44 md:w-64 z-20;
+}
+
+.titleText {
+  @apply text-[50px] md:text-[100px] leading-[60px] md:leading-[90px] font-extrabold w-[90%] md:w-[40%] mx-auto text-center mt-6 md:mt-12 z-40 text-white;
+}

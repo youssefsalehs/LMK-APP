@@ -1,0 +1,37 @@
+@reference "../../../index.css";
+
+.container {
+  @apply w-[97%] flex flex-col overflow-hidden mx-auto bg-linear-to-b from-[#8027F5] via-[#E727F5] to-[#F5279C] min-h-screen rounded-[35px];
+}
+
+.navWrapper {
+  @apply p-3;
+}
+
+.details {
+  @apply grid grid-cols-1 md:grid-cols-3 flex-1 items-center justify-center gap-8 px-6 py-10;
+}
+
+.imageWrapper {
+  @apply flex items-center justify-center;
+}
+
+.leftImg {
+  @apply w-72 h-96 object-cover -rotate-5 rounded-2xl;
+}
+
+.rightImg {
+  @apply w-64 h-96 object-cover rotate-5 rounded-2xl;
+}
+
+.content {
+  @apply flex flex-col items-center justify-center gap-8;
+}
+
+.title {
+  @apply text-5xl lg:text-[90px] text-center font-extrabold leading-tight;
+}
+
+.cta {
+  @apply text-2xl px-10 py-8 rounded-full;
+}
