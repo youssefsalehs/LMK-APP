@@ -1,4 +1,4 @@
-@reference "../../index.css";
+@reference "@/index.css";
 
 .layoutContainer {
   @apply grid min-h-screen grid-cols-1 lg:grid-cols-2;

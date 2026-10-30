@@ -1,4 +1,4 @@
-@reference "../../../index.css";
+@reference "@/index.css";
 
 .container {
   @apply min-h-screen text-center flex justify-center font-extrabold items-center;

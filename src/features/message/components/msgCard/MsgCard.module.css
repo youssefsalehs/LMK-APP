@@ -1,4 +1,4 @@
-@reference "../../index.css";
+@reference "@/index.css";
 
 .container {
   @apply rounded-2xl overflow-hidden border border-primary bg-primary;

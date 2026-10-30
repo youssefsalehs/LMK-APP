@@ -1,4 +1,4 @@
-@reference "../../../index.css";
+@reference "@/index.css";
 
 .container {
   @apply flex flex-col items-center justify-center shadow-2xl bg-linear-to-b p-8 from-[#8027F5] via-[#E727F5] to-[#F5279C] min-h-screen overflow-hidden;

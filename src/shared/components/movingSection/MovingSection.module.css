@@ -1,4 +1,4 @@
-@reference "../../../index.css";
+@reference "@/index.css";
 
 .container {
   @apply overflow-hidden py-3;

@@ -5,10 +5,13 @@ import MainLayout from "./layouts/mainLayout/MainLayout";
 import Home from "./shared/pages/home/Home";
 import Login from "./features/auth/pages/login/Login";
 import AuthLayout from "./layouts/authLayout/AuthLayout";
-import ThemeBtn from "./components/theme/ThemeBtn";
+import ThemeBtn from "./shared/components/theme/ThemeBtn";
 import ForgotPassword from "./features/auth/pages/forgotPassword/ForgotPassword";
 import Register from "./features/auth/pages/register/Register";
-import VerificationEmail from "./features/auth/pages/verificationEmail/VerificationEmail";
+import VerificationEmail from "./features/auth/pages/verification/VerificationEmail";
+import VerificationLogin from "./features/auth/pages/verification/VerificationLogin";
+import Verification2FA from "./features/auth/pages/verification/Verification2FA";
+import TwoFactorAuthenticationEnable from "./features/auth/pages/enable2fa/TwoFactorAuthenticationEnable";
 const router = createBrowserRouter([
   {
     path: "",
@@ -35,6 +38,12 @@ const router = createBrowserRouter([
         path: "verification-email",
         element: <VerificationEmail />,
       },
+      {
+        path: "two-factor-authentication",
+        element: <TwoFactorAuthenticationEnable />,
+      },
+      { path: "verification-2fa", element: <Verification2FA /> },
+      { path: "verification-login", element: <VerificationLogin /> },
     ],
   },
 ]);
