@@ -5,7 +5,7 @@
 }
 
 .brandSide {
-  @apply relative hidden lg:flex flex-col bg-linear-to-b from-[#8027F5] via-[#E727F5] to-[#F5279C] p-12 overflow-hidden border-r border-primary-foreground/20;
+  @apply relative hidden lg:flex flex-col rounded-[35px] m-6 bg-linear-to-b from-[#8027F5] via-[#E727F5] to-[#F5279C] p-12 overflow-hidden border-r border-primary-foreground/20;
 }
 
 .brandContent {

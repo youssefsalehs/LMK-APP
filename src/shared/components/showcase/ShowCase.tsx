@@ -1,4 +1,4 @@
-import MsgCard from "@/components/msgCard/MsgCard";
+import MsgCard from "@/features/message/components/msgCard/MsgCard";
 import styles from "./ShowCase.module.css";
 import { motion } from "motion/react";
 

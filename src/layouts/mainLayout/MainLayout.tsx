@@ -1,5 +1,5 @@
-import Footer from "@/components/footer/Footer";
-import Navbar from "@/components/navbar/Navbar";
+import Footer from "@/shared/components/footer/Footer";
+import Navbar from "@/shared/components/navbar/Navbar";
 import { motion, useMotionValueEvent, useScroll } from "motion/react";
 import { useState } from "react";
 import { Outlet } from "react-router";

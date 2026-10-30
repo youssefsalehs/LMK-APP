@@ -1,4 +1,4 @@
-import Navbar from "@/components/navbar/Navbar";
+import Navbar from "@/shared/components/navbar/Navbar";
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import styles from "./Hero.module.css";

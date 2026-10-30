@@ -1,4 +1,4 @@
-import RegisterForm from "@/components/registerComponents/registerForm/RegisterForm";
+import RegisterForm from "@/features/auth/components/registerForm/RegisterForm";
 import { Link } from "react-router";
 
 export default function Register() {
