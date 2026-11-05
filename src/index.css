@@ -128,6 +128,47 @@
     @apply font-sans;
   }
 }
+
+@utility gradientBg {
+  @apply from-[#8027F5] via-[#E727F5] to-[#F5279C];
+}
+
 .submitButton {
   @apply w-full bg-purple-600 hover:bg-purple-700 text-white font-medium py-2 rounded-lg transition-colors;
+}
+
+.form-container {
+  @apply space-y-6;
+}
+
+.form-header {
+  @apply space-y-2 text-center sm:text-left;
+}
+
+.form-title {
+  @apply text-2xl font-bold tracking-tight;
+}
+
+.form-subtitle {
+  @apply text-sm text-muted-foreground;
+}
+
+.form {
+  @apply space-y-4;
+}
+
+.fieldGroup {
+  @apply space-y-2;
+}
+
+.icon {
+  @apply h-4 w-4 text-muted-foreground;
+}
+
+.errorText {
+  @apply text-xs font-medium text-destructive;
+}
+
+.inputError {
+  @apply !border-destructive !ring-destructive focus-visible:!ring-destructive;
 }

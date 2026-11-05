@@ -12,11 +12,23 @@ import VerificationEmail from "./features/auth/pages/verification/VerificationEm
 import VerificationLogin from "./features/auth/pages/verification/VerificationLogin";
 import Verification2FA from "./features/auth/pages/verification/Verification2FA";
 import TwoFactorAuthenticationEnable from "./features/auth/pages/enable2fa/TwoFactorAuthenticationEnable";
+import MsgPage from "./features/message/pages/msgPage/MsgPage";
+import Profile from "./features/auth/pages/myProfile/Profile";
 const router = createBrowserRouter([
   {
     path: "",
     element: <MainLayout />,
-    children: [{ index: true, element: <Home /> }],
+    children: [
+      { index: true, element: <Home /> },
+      {
+        path: "/profile",
+        element: <Profile />,
+      },
+    ],
+  },
+  {
+    path: "/:username",
+    element: <MsgPage />,
   },
   {
     path: "/auth",

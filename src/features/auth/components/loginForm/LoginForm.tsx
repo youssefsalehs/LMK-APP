@@ -1,25 +1,27 @@
-import { useState } from "react";
-import { useForm } from "react-hook-form";
-import type { SubmitHandler } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
-import type { TloginFormData } from "@/types/loginFormData";
-import { loginSchema } from "@/schemas/loginSchema";
-import { Eye, EyeOff, LockIcon, Mail } from "lucide-react";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import styles from "./LoginForm.module.css";
+import { loginSchema } from "@/schemas/loginSchema";
+import type { TloginFormData } from "@/types/loginFormData";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Eye, EyeOff, LockIcon, Mail } from "lucide-react";
+import { useState } from "react";
+import type { SubmitHandler } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { Link } from "react-router";
+import useLogin from "../../hooks/useLogin";
+import Form from "../form/Form";
+import styles from "./LoginForm.module.css";
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
-
+  const { mutate, isPending } = useLogin();
   const {
     register,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<TloginFormData>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
@@ -29,23 +31,19 @@ export default function LoginForm() {
   });
 
   const onSubmit: SubmitHandler<TloginFormData> = (data) => {
-    console.log("Submitted data:", data);
+    mutate(data);
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Welcome back</h2>
-        <p className={styles.subtitle}>
-          Enter your credentials to access your account
-        </p>
-      </div>
-
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <div className={styles.fieldGroup}>
-          <InputGroup className={errors.email && styles.inputError}>
+    <Form
+      title="Welcome back"
+      subtitle="Enter your credentials to access your account"
+    >
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <div className="fieldGroup">
+          <InputGroup className={errors.email && "inputError"}>
             <InputGroupAddon align="inline-start">
-              <Mail className={styles.icon} />
+              <Mail className="icon" />
             </InputGroupAddon>
             <InputGroupInput
               id="email"
@@ -55,15 +53,13 @@ export default function LoginForm() {
             />
           </InputGroup>
 
-          {errors.email && (
-            <p className={styles.errorText}>{errors.email.message}</p>
-          )}
+          {errors.email && <p className="errorText">{errors.email.message}</p>}
         </div>
 
-        <div className={styles.fieldGroup}>
+        <div className="fieldGroup">
           <InputGroup className={errors.password && styles.inputError}>
             <InputGroupAddon align="inline-start">
-              <LockIcon className={styles.icon} />
+              <LockIcon className="icon" />
             </InputGroupAddon>
             <InputGroupInput
               id="password"
@@ -79,16 +75,16 @@ export default function LoginForm() {
                 aria-label={showPassword ? "Hide password" : "Show password"}
               >
                 {showPassword ? (
-                  <EyeOff className={styles.icon} />
+                  <EyeOff className="icon" />
                 ) : (
-                  <Eye className={styles.icon} />
+                  <Eye className="icon" />
                 )}
               </button>
             </InputGroupAddon>
           </InputGroup>
 
           {errors.password && (
-            <p className={styles.errorText}>{errors.password.message}</p>
+            <p className="errorText">{errors.password.message}</p>
           )}
         </div>
 
@@ -101,10 +97,10 @@ export default function LoginForm() {
           </Link>
         </div>
 
-        <Button type="submit" disabled={isSubmitting} className="submitButton">
-          {isSubmitting ? "Signing in..." : "Sign in"}
+        <Button type="submit" disabled={isPending} className="submitButton">
+          {isPending ? "Signing in..." : "Sign in"}
         </Button>
       </form>
-    </div>
+    </Form>
   );
 }

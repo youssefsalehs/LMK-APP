@@ -14,7 +14,7 @@ export default function MainLayout() {
   });
 
   return (
-    <div className="bg-primary min-h-screen text-primary-foreground">
+    <div className="bg-primary min-h-screen flex flex-col text-primary-foreground">
       <motion.div
         className="fixed inset-x-0 top-0 z-50 bg-primary"
         initial={{ y: "-100%", opacity: 0 }}
@@ -29,10 +29,13 @@ export default function MainLayout() {
         </div>
       </motion.div>
 
-      <main>
+      <main className="flex-1">
         <Outlet />
       </main>
-      <Footer />
+
+      <div className="mt-0 ">
+        <Footer />
+      </div>
     </div>
   );
 }

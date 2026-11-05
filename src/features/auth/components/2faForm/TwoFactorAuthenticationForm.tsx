@@ -9,7 +9,7 @@ import { Mail } from "lucide-react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import styles from "./TwoFactorAuthenticationForm.module.css";
+import Form from "../form/Form";
 const schema = z.object({
   email: z.email("Please enter a valid email address").toLowerCase().trim(),
 });
@@ -31,20 +31,15 @@ export default function TwoFactorAuthenticationForm() {
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Enable two-factor authentication</h2>
-        <p className={styles.subtitle}>
-          Add an extra layer of security to your account. Enter your email and
-          we'll send you a verification code.
-        </p>
-      </div>
-
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <div className={styles.fieldGroup}>
-          <InputGroup className={errors.email && styles.inputError}>
+    <Form
+      title="Two-Factor Authentication"
+      subtitle="Enter your email to receive a verification code."
+    >
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <div className="fieldGroup">
+          <InputGroup className={errors.email && "inputError"}>
             <InputGroupAddon align="inline-start">
-              <Mail className={styles.icon} />
+              <Mail className="icon" />
             </InputGroupAddon>
             <InputGroupInput
               id="email"
@@ -54,15 +49,13 @@ export default function TwoFactorAuthenticationForm() {
             />
           </InputGroup>
 
-          {errors.email && (
-            <p className={styles.errorText}>{errors.email.message}</p>
-          )}
+          {errors.email && <p className="errorText">{errors.email.message}</p>}
         </div>
 
         <Button type="submit" disabled={isSubmitting} className="submitButton">
           {isSubmitting ? "Sending code..." : "Send verification code"}
         </Button>
       </form>
-    </div>
+    </Form>
   );
 }

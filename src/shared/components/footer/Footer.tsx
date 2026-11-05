@@ -7,15 +7,6 @@ export default function Footer() {
       <div className={styles.container}>
         <div className={styles.topRow}>
           <Logo />
-          <ul className={styles.links}>
-            <li>
-              <a href="#about">About</a>
-            </li>
-
-            <li>
-              <a href="mailto:hello@lmk.com">Contact</a>
-            </li>
-          </ul>
         </div>
 
         <div className={styles.bottomRow}>

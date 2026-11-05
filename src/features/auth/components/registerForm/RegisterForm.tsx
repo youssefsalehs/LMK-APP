@@ -1,33 +1,38 @@
-import { Controller, useForm, type SubmitHandler } from "react-hook-form";
-import type { TregisterData } from "@/types/registerData";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { registerSchema } from "@/schemas/registerSchema";
-import { User, Mail, Lock, Calendar } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import styles from "./RegisterForm.module.css";
+import { registerSchema } from "@/schemas/registerSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Calendar, Lock, Mail, User } from "lucide-react";
+import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 
 import {
-  SelectTrigger,
   Select,
-  SelectValue,
   SelectContent,
   SelectGroup,
   SelectItem,
+  SelectTrigger,
+  SelectValue,
 } from "@/components/ui/select";
+import { z } from "zod";
+import useRegister from "../../hooks/useRegister";
+import Form from "../form/Form";
 export default function RegisterForm() {
+  type RegisterInput = z.input<typeof registerSchema>;
+  type RegisterOutput = z.output<typeof registerSchema>;
+
   const {
     register,
     handleSubmit,
     control,
-    formState: { errors, isSubmitting },
-  } = useForm<TregisterData>({
+    formState: { errors },
+  } = useForm<RegisterInput, unknown, RegisterOutput>({
     defaultValues: {
       name: "",
+      username: "",
       email: "",
       password: "",
       dob: undefined,
@@ -39,24 +44,21 @@ export default function RegisterForm() {
     { label: "Male", value: "male" },
     { label: "Female", value: "female" },
   ];
-  const onSubmit: SubmitHandler<TregisterData> = (data) => {
-    console.log(data);
+  const { mutate, isPending } = useRegister();
+  const onSubmit: SubmitHandler<RegisterOutput> = (data) => {
+    mutate(data);
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Create an account</h2>
-        <p className={styles.subtitle}>
-          Please fill in your details below to register.
-        </p>
-      </div>
-
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <div className={styles.fieldGroup}>
-          <InputGroup className={errors.name ? styles.inputError : undefined}>
+    <Form
+      title="create an account"
+      subtitle=" Please fill in your details below to register."
+    >
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <div className="fieldGroup">
+          <InputGroup className={errors.name ? "inputError" : undefined}>
             <InputGroupAddon align="inline-start">
-              <User className={styles.icon} />
+              <User className="icon" />
             </InputGroupAddon>
             <InputGroupInput
               id="name"
@@ -65,15 +67,29 @@ export default function RegisterForm() {
               {...register("name")}
             />
           </InputGroup>
-          {errors.name && (
-            <p className={styles.errorText}>{errors.name.message}</p>
+          {errors.name && <p className="errorText">{errors.name.message}</p>}
+        </div>
+        <div className="fieldGroup">
+          <InputGroup className={errors.username ? "inputError" : undefined}>
+            <InputGroupAddon align="inline-start">
+              <p className="icon flex items-center justify-center">@</p>
+            </InputGroupAddon>
+            <InputGroupInput
+              id="username"
+              type="text"
+              placeholder="johndoe_123"
+              {...register("username")}
+            />
+          </InputGroup>
+          {errors.username && (
+            <p className="errorText">{errors.username.message}</p>
           )}
         </div>
 
-        <div className={styles.fieldGroup}>
-          <InputGroup className={errors.email ? styles.inputError : undefined}>
+        <div className="fieldGroup">
+          <InputGroup className={errors.email ? "inputError" : undefined}>
             <InputGroupAddon align="inline-start">
-              <Mail className={styles.icon} />
+              <Mail className="icon" />
             </InputGroupAddon>
             <InputGroupInput
               id="email"
@@ -82,17 +98,13 @@ export default function RegisterForm() {
               {...register("email")}
             />
           </InputGroup>
-          {errors.email && (
-            <p className={styles.errorText}>{errors.email.message}</p>
-          )}
+          {errors.email && <p className="errorText">{errors.email.message}</p>}
         </div>
 
-        <div className={styles.fieldGroup}>
-          <InputGroup
-            className={errors.password ? styles.inputError : undefined}
-          >
+        <div className="fieldGroup">
+          <InputGroup className={errors.password ? "inputError" : undefined}>
             <InputGroupAddon align="inline-start">
-              <Lock className={styles.icon} />
+              <Lock className="icon" />
             </InputGroupAddon>
             <InputGroupInput
               id="password"
@@ -102,23 +114,21 @@ export default function RegisterForm() {
             />
           </InputGroup>
           {errors.password && (
-            <p className={styles.errorText}>{errors.password.message}</p>
+            <p className="errorText">{errors.password.message}</p>
           )}
         </div>
         <div className="flex justify-between gap-2">
-          <div className={styles.fieldGroup}>
-            <InputGroup className={errors.dob ? styles.inputError : undefined}>
+          <div className="fieldGroup">
+            <InputGroup className={errors.dob ? "inputError" : undefined}>
               <InputGroupAddon align="inline-start">
-                <Calendar className={styles.icon} />
+                <Calendar className="icon" />
               </InputGroupAddon>
               <InputGroupInput id="dob" type="date" {...register("dob")} />
             </InputGroup>
-            {errors.dob && (
-              <p className={styles.errorText}>{errors.dob.message}</p>
-            )}
+            {errors.dob && <p className="errorText">{errors.dob.message}</p>}
           </div>
 
-          <div className={styles.fieldGroup}>
+          <div className="fieldGroup">
             <Controller
               name="gender"
               control={control}
@@ -140,15 +150,15 @@ export default function RegisterForm() {
               )}
             />
             {errors.gender && (
-              <p className={styles.errorText}>{errors.gender.message}</p>
+              <p className="errorText">{errors.gender.message}</p>
             )}
           </div>
         </div>
 
-        <Button type="submit" disabled={isSubmitting} className="submitButton">
-          {isSubmitting ? "Creating account..." : "Sign Up"}
+        <Button type="submit" disabled={isPending} className="submitButton">
+          {isPending ? "Creating account..." : "Sign Up"}
         </Button>
       </form>
-    </div>
+    </Form>
   );
 }

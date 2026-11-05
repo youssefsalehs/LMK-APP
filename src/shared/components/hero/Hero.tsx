@@ -2,6 +2,7 @@ import Navbar from "@/shared/components/navbar/Navbar";
 import { motion } from "motion/react";
 import { Link } from "react-router";
 import styles from "./Hero.module.css";
+import { useAuth } from "@/features/auth/context/authContext";
 
 const float = {
   animate: { y: [0, -20, 0] },
@@ -9,6 +10,7 @@ const float = {
 };
 
 export default function Hero() {
+  const { user} = useAuth();
   return (
     <div className={styles.container}>
       <div className={styles.navWrapper}>
@@ -26,9 +28,9 @@ export default function Hero() {
 
         <div className={styles.content}>
           <p className={styles.title}>Keep it real, keep it fun</p>
-          <Link to="/auth/register" className={styles.cta}>
+          {!user && <Link to="/auth/register" className={styles.cta}>
             Get Started
-          </Link>
+          </Link>}
         </div>
 
         <div className={styles.imageWrapper}>

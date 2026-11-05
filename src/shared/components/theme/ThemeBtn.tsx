@@ -9,7 +9,7 @@ export default function ThemeBtn() {
     <Button
       size="icon"
       onClick={toggleTheme}
-      className="fixed right-10 bottom-10 size-12"
+      className="fixed cursor-pointer right-10 bottom-10 size-12 z-50"
     >
       {theme === "dark" ? (
         <Sun className="size-6" />

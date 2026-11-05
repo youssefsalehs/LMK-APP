@@ -7,24 +7,37 @@ import {
 import { verifyOtpSchema } from "@/schemas/verifyOtpSchema";
 import type { TverifyOtpData } from "@/types/verifyOtpData";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { useEffect, useState } from "react";
 import type { SubmitHandler } from "react-hook-form";
 import { Controller, useForm } from "react-hook-form";
-import styles from "./VerifyForm.module.css";
+import { Navigate, useLocation } from "react-router";
+import useSendOtp from "../../hooks/useSendOtp";
+import Form from "../form/Form";
 
 const RESEND_SECONDS = 30;
 
-export default function VerifyForm() {
+export default function VerifyForm({
+  mutate,
+  isPending,
+}: {
+  mutate: (data: { data: TverifyOtpData; idempotency: string }) => void;
+  isPending: boolean;
+}) {
   const [cooldown, setCooldown] = useState(RESEND_SECONDS);
+  const location = useLocation();
+  const savedEmail: string = location.state?.email ?? "";
+  const { mutate: sendOtp, isPending: sendingOtp } = useSendOtp();
 
   const {
     control,
     handleSubmit,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<TverifyOtpData>({
     resolver: zodResolver(verifyOtpSchema),
     defaultValues: {
-      otp: "",
+      email: savedEmail,
+      code: "",
     },
   });
 
@@ -34,65 +47,75 @@ export default function VerifyForm() {
     return () => clearTimeout(timer);
   }, [cooldown]);
 
+  if (!savedEmail) return <Navigate to="/register" replace />;
+  function generateOrGetIdempotencyKey(): string {
+    const idempotency = localStorage.getItem("idempotency");
+    if (idempotency) {
+      return idempotency;
+    }
+    const newIdempotency = crypto.randomUUID();
+    localStorage.setItem("idempotency", newIdempotency);
+    return newIdempotency;
+  }
+  const idempotencyKey = generateOrGetIdempotencyKey();
+
   const onSubmit: SubmitHandler<TverifyOtpData> = (data) => {
-    console.log("Submitted data:", data);
+    mutate({ data });
   };
 
   const handleResend = () => {
-    console.log("Resend code");
-    setCooldown(RESEND_SECONDS);
+    sendOtp(
+      { data: { email: savedEmail }, idempotency: idempotencyKey },
+      { onSuccess: () => setCooldown(RESEND_SECONDS) },
+    );
   };
 
   return (
-    <div className={styles.container}>
-      <div className={styles.header}>
-        <h2 className={styles.title}>Verify your account</h2>
-        <p className={styles.subtitle}>
-          Enter the 6-digit code we sent to your email.
-        </p>
-      </div>
-
-      <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
-        <div className={styles.fieldGroup}>
+    <Form
+      title="Verify your account"
+      subtitle="Enter the 6-digit code we sent to your email."
+    >
+      <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <div className="fieldGroup">
           <Controller
-            name="otp"
+            name="code"
             control={control}
             render={({ field }) => (
               <InputOTP
                 maxLength={6}
+                pattern={REGEXP_ONLY_DIGITS}
                 value={field.value}
                 onChange={field.onChange}
                 onBlur={field.onBlur}
-                aria-invalid={!!errors.otp}
+                aria-invalid={!!errors.code}
               >
                 <InputOTPGroup className="bg-primary-foreground! text-primary!">
-                  <InputOTPSlot index={0} />
-                  <InputOTPSlot index={1} />
-                  <InputOTPSlot index={2} />
-                  <InputOTPSlot index={3} />
-                  <InputOTPSlot index={4} />
-                  <InputOTPSlot index={5} />
+                  {[0, 1, 2, 3, 4, 5].map((i) => (
+                    <InputOTPSlot key={i} index={i} />
+                  ))}
                 </InputOTPGroup>
               </InputOTP>
             )}
           />
 
-          {errors.otp && (
-            <p className={styles.errorText}>{errors.otp.message}</p>
-          )}
+          {errors.code && <p className="errorText">{errors.code.message}</p>}
         </div>
 
-        <Button type="submit" disabled={isSubmitting} className="submitButton ">
-          {isSubmitting ? "Verifying..." : "Verify"}
+        <Button type="submit" disabled={isPending} className="submitButton">
+          {isPending ? "Verifying..." : "Verify"}
         </Button>
 
         <p className="text-center text-muted-foreground">
           didn't receive otp?{" "}
-          <Button disabled={cooldown > 0} onClick={handleResend}>
-            {cooldown > 0 ? `resend in ${cooldown} seconds` : `resend`}
+          <Button
+            type="button"
+            disabled={cooldown > 0 || sendingOtp}
+            onClick={handleResend}
+          >
+            {cooldown > 0 ? `resend in ${cooldown} seconds` : "resend"}
           </Button>
         </p>
       </form>
-    </div>
+    </Form>
   );
 }
