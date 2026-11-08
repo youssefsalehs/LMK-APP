@@ -1,14 +1,14 @@
 @reference "@/index.css";
 
 .container {
-  @apply min-h-screen text-center flex justify-center font-extrabold items-center;
+  @apply min-h-screen text-center flex justify-center py-6 font-extrabold items-center;
 }
 .container > div {
   @apply w-[60%] mx-auto space-y-10 font-extrabold;
 }
 
 .container > div h2 {
-  @apply text-[80px] leading-24;
+  @apply text-5xl text-center md:text-[80px] md:leading-24;
 }
 
 .container > div ul {

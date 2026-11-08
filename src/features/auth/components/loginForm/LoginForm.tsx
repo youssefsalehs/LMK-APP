@@ -100,6 +100,15 @@ export default function LoginForm() {
         <Button type="submit" disabled={isPending} className="submitButton">
           {isPending ? "Signing in..." : "Sign in"}
         </Button>
+        <p className=" text-center text-sm text-muted-foreground">
+          Don't have an account?{" "}
+          <Link
+            to="/auth/register"
+            className="font-semibold text-[#8027f5] hover:underline"
+          >
+            Sign up
+          </Link>
+        </p>
       </form>
     </Form>
   );

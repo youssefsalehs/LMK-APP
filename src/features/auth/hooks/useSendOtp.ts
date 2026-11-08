@@ -1,4 +1,4 @@
-import type { TforgotPasswordData } from "@/types/forgotPasswordData";
+import type { ResendVerificationRegisterationPayload } from "@/types/authModel";
 import { useMutation } from "@tanstack/react-query";
 import { toast } from "sonner";
 import { sendOtpApi } from "../api/auth.api";
@@ -9,7 +9,7 @@ export default function useSendOtp() {
       data,
       idempotency,
     }: {
-      data: TforgotPasswordData;
+      data: ResendVerificationRegisterationPayload;
       idempotency: string;
     }) => sendOtpApi(data, idempotency),
     onSuccess: (data) => {

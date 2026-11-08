@@ -1,6 +1,6 @@
-import useGetProfile from "@/features/user/hooks/useGetProfile";
+import useGetProfile from "@/features/user/hooks/useGetUsersProfile";
 import NotFound from "@/shared/pages/notfound/NotFound";
-import type { User } from "@/types/User";
+import type { User } from "@/types/userModel";
 import { Link } from "react-router";
 import InputCard from "../../components/inputCard/InputCard";
 

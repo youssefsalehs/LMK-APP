@@ -1,8 +1,8 @@
 import { createContext, useContext, type ReactNode } from "react";
-import type { User } from "@/types/User";
+import type { User } from "@/types/userModel";
 import useGetMe from "../hooks/useGetMe";
 import { useQueryClient } from "@tanstack/react-query";
-import QueryKeys from "@/shared/lib/queryKeys";
+import QueryKeys from "@/shared/utils/queryKeys";
 
 interface AuthContextValue {
   user: User | null;
@@ -15,10 +15,11 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const { data, isLoading } = useGetMe();
+
   const queryClient = useQueryClient();
-  const userData: User| undefined= data?.data;
-  const login = (user:User) => {
-    queryClient.setQueryData(QueryKeys.authUser, user);
+  const userData: User | undefined = data?.data;
+  const login = (user: User) => {
+    queryClient.invalidateQueries({ queryKey: QueryKeys.authUser });
   };
 
   const logout = () => {
@@ -27,7 +28,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ user:userData ?? null, isLoading,login,logout }}>
+    <AuthContext.Provider
+      value={{ user: userData ?? null, isLoading, login, logout }}
+    >
       {children}
     </AuthContext.Provider>
   );

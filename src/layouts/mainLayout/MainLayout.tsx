@@ -10,7 +10,14 @@ export default function MainLayout() {
 
   useMotionValueEvent(scrollY, "change", (current) => {
     const previous = scrollY.getPrevious() ?? 0;
-    setVisible(current > previous && current > 50);
+
+    if (current <= 50) {
+      setVisible(false);
+    } else if (current > previous) {
+      setVisible(true);
+    } else {
+      setVisible(false);
+    }
   });
 
   return (

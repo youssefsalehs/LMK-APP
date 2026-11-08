@@ -20,6 +20,7 @@ import {
 import { z } from "zod";
 import useRegister from "../../hooks/useRegister";
 import Form from "../form/Form";
+import { Link } from "react-router";
 export default function RegisterForm() {
   type RegisterInput = z.input<typeof registerSchema>;
   type RegisterOutput = z.output<typeof registerSchema>;
@@ -158,6 +159,16 @@ export default function RegisterForm() {
         <Button type="submit" disabled={isPending} className="submitButton">
           {isPending ? "Creating account..." : "Sign Up"}
         </Button>
+
+        <p className=" text-center text-sm text-muted-foreground">
+          Already have an account?{" "}
+          <Link
+            to="/auth/login"
+            className="font-semibold text-[#8027f5] hover:underline"
+          >
+            Sign in
+          </Link>
+        </p>
       </form>
     </Form>
   );

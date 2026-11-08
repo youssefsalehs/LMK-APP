@@ -1,29 +1,35 @@
 import { createBrowserRouter } from "react-router";
 import { RouterProvider } from "react-router/dom";
 import { Toaster } from "./components/ui/sonner";
-import MainLayout from "./layouts/mainLayout/MainLayout";
-import Home from "./shared/pages/home/Home";
-import Login from "./features/auth/pages/login/Login";
-import AuthLayout from "./layouts/authLayout/AuthLayout";
-import ThemeBtn from "./shared/components/theme/ThemeBtn";
+import TwoFactorAuthenticationEnable from "./features/auth/pages/enable2fa/TwoFactorAuthenticationEnable";
 import ForgotPassword from "./features/auth/pages/forgotPassword/ForgotPassword";
+import Login from "./features/auth/pages/login/Login";
 import Register from "./features/auth/pages/register/Register";
+import Verification2FA from "./features/auth/pages/verification/Verification2FA";
 import VerificationEmail from "./features/auth/pages/verification/VerificationEmail";
 import VerificationLogin from "./features/auth/pages/verification/VerificationLogin";
-import Verification2FA from "./features/auth/pages/verification/Verification2FA";
-import TwoFactorAuthenticationEnable from "./features/auth/pages/enable2fa/TwoFactorAuthenticationEnable";
 import MsgPage from "./features/message/pages/msgPage/MsgPage";
-import Profile from "./features/auth/pages/myProfile/Profile";
+import Profile from "./features/user/pages/myProfile/Profile";
+import AuthLayout from "./layouts/authLayout/AuthLayout";
+import DashboardLayout from "./layouts/dashboardLayout/DashboardLayout";
+import MainLayout from "./layouts/mainLayout/MainLayout";
+import Home from "./shared/pages/home/Home";
+import UpdatePassword from "./features/user/pages/updatePassword/UpdatePassword";
+import TwoFactorAuth from "./features/user/pages/enable2fa/TwoFactorAuth";
+
 const router = createBrowserRouter([
   {
     path: "",
     element: <MainLayout />,
+    children: [{ index: true, element: <Home /> }],
+  },
+  {
+    path: "/profile",
+    element: <DashboardLayout />,
     children: [
-      { index: true, element: <Home /> },
-      {
-        path: "/profile",
-        element: <Profile />,
-      },
+      { index: true, element: <Profile /> },
+      { path: "update-password", element: <UpdatePassword /> },
+      { path: "enable-2fa", element: <TwoFactorAuth /> },
     ],
   },
   {
@@ -62,7 +68,6 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <ThemeBtn />
       <RouterProvider router={router} />
       <Toaster position="top-right" />
     </>

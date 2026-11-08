@@ -9,7 +9,8 @@ export default function ThemeBtn() {
     <Button
       size="icon"
       onClick={toggleTheme}
-      className="fixed cursor-pointer right-10 bottom-10 size-12 z-50"
+      variant={"secondary"}
+      className=" cursor-pointer size-12 z-50 rounded-full"
     >
       {theme === "dark" ? (
         <Sun className="size-6" />

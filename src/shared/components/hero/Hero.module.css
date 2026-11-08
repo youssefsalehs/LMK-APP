@@ -1,7 +1,7 @@
 @reference "@/index.css";
 
 .container {
-  @apply w-[97%] flex flex-col overflow-hidden mx-auto bg-linear-to-b gradientBg min-h-screen rounded-[35px];
+  @apply w-[97%] flex flex-col overflow-hidden mx-auto bg-linear-to-b gradientBg rounded-[35px];
 }
 
 .navWrapper {
@@ -9,29 +9,34 @@
 }
 
 .details {
-  @apply grid grid-cols-1 md:grid-cols-3 flex-1 items-center justify-center gap-8 px-6 py-10;
+  @apply grid grid-cols-2 md:grid-cols-3 flex-1 items-center justify-center gap-4 md:gap-8 px-4 md:px-6 py-10;
 }
 
-.imageWrapper {
-  @apply flex items-center justify-center;
+.imageWrapperLeft {
+  @apply flex items-center justify-center col-span-1 md:order-1;
 }
 
-.leftImg {
-  @apply w-72 h-96 object-cover -rotate-5 rounded-2xl;
-}
-
-.rightImg {
-  @apply w-64 h-96 object-cover rotate-5 rounded-2xl;
+.imageWrapperRight {
+  @apply flex items-center justify-center col-span-1 md:order-3;
 }
 
 .content {
-  @apply flex flex-col items-center justify-center gap-8;
+  @apply col-span-2 md:col-span-1 md:order-2 flex flex-col items-center justify-center gap-6 md:gap-8 mt-6 md:mt-0;
+}
+
+/* Scaled down dimensions for mobile side-by-side fit */
+.leftImg {
+  @apply w-36 h-48 sm:w-48 sm:h-64 md:w-72 md:h-96 object-cover -rotate-5 rounded-2xl;
+}
+
+.rightImg {
+  @apply w-36 h-48 sm:w-44 sm:h-60 md:w-64 md:h-96 object-cover rotate-5 rounded-2xl;
 }
 
 .title {
-  @apply text-5xl lg:text-[90px] text-center font-extrabold leading-tight;
+  @apply text-4xl sm:text-5xl lg:text-[90px] text-center font-extrabold leading-tight;
 }
 
 .cta {
-  @apply text-2xl px-8 py-4 rounded-full bg-[#8027f5];
+  @apply text-xl md:text-2xl px-6 py-3 md:px-8 md:py-4 rounded-full bg-[#8027f5];
 }

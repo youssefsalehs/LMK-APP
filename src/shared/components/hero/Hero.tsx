@@ -10,7 +10,7 @@ const float = {
 };
 
 export default function Hero() {
-  const { user} = useAuth();
+  const { user } = useAuth();
   return (
     <div className={styles.container}>
       <div className={styles.navWrapper}>
@@ -18,7 +18,7 @@ export default function Hero() {
       </div>
 
       <div className={styles.details}>
-        <div className={styles.imageWrapper}>
+        <div className={styles.imageWrapperLeft}>
           <motion.img
             {...float}
             src="/selfie1.jpg"
@@ -26,20 +26,22 @@ export default function Hero() {
           />
         </div>
 
-        <div className={styles.content}>
-          <p className={styles.title}>Keep it real, keep it fun</p>
-          {!user && <Link to="/auth/register" className={styles.cta}>
-            Get Started
-          </Link>}
-        </div>
-
-        <div className={styles.imageWrapper}>
+        <div className={styles.imageWrapperRight}>
           <motion.img
             {...float}
             transition={{ ...float.transition, delay: 1 }}
             src="/selfie2.avif"
             className={styles.rightImg}
           />
+        </div>
+
+        <div className={styles.content}>
+          <p className={styles.title}>Keep it real, keep it fun</p>
+          {!user && (
+            <Link to="/auth/register" className={styles.cta}>
+              Get Started
+            </Link>
+          )}
         </div>
       </div>
     </div>

@@ -1,9 +1,9 @@
 import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router";
 import { getProfileApi } from "../api/user.api";
-import QueryKeys from "@/shared/lib/queryKeys";
+import QueryKeys from "@/shared/utils/queryKeys";
 
-export default function useGetProfile() {
+export default function useGetUsersProfile() {
   const { username }: Partial<{ username: string }> = useParams<{
     username: string;
   }>();

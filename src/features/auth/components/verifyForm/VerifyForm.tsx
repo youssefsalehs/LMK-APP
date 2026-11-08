@@ -5,7 +5,7 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import { verifyOtpSchema } from "@/schemas/verifyOtpSchema";
-import type { TverifyOtpData } from "@/types/verifyOtpData";
+import type { VerifyEmailPayload } from "@/types/authModel";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { REGEXP_ONLY_DIGITS } from "input-otp";
 import { useEffect, useState } from "react";
@@ -21,7 +21,7 @@ export default function VerifyForm({
   mutate,
   isPending,
 }: {
-  mutate: (data: { data: TverifyOtpData; idempotency: string }) => void;
+  mutate: (data: VerifyEmailPayload) => void;
   isPending: boolean;
 }) {
   const [cooldown, setCooldown] = useState(RESEND_SECONDS);
@@ -33,7 +33,7 @@ export default function VerifyForm({
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<TverifyOtpData>({
+  } = useForm<VerifyEmailPayload>({
     resolver: zodResolver(verifyOtpSchema),
     defaultValues: {
       email: savedEmail,
@@ -59,8 +59,8 @@ export default function VerifyForm({
   }
   const idempotencyKey = generateOrGetIdempotencyKey();
 
-  const onSubmit: SubmitHandler<TverifyOtpData> = (data) => {
-    mutate({ data });
+  const onSubmit: SubmitHandler<VerifyEmailPayload> = (data) => {
+    mutate(data);
   };
 
   const handleResend = () => {

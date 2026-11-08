@@ -1,6 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import { getMeApi } from "../api/auth.api";
-import QueryKeys from "@/shared/lib/queryKeys";
+import QueryKeys from "@/shared/utils/queryKeys";
 
 export default function useGetMe() {
   const { data, isLoading, error } = useQuery({

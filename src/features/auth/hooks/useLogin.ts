@@ -9,15 +9,19 @@ export default function useLogin() {
   const { login } = useAuth();
   const { mutate, isPending, error } = useMutation({
     mutationFn: loginApi,
-    onSuccess: (data) => {
-      toast.success(data.message);
-      if (data?.data?.twoStepVerification) {
+    onSuccess: (data, variables) => {
+      toast.success(data?.message);
+
+      const user = data?.data;
+      const email = variables?.email;
+      if (!user) {
         navigate("/auth/verification-login", {
-          state: { email: data.data.email },
+          state: { email: email ?? "" },
           replace: true,
         });
-      } else {
-        login(data?.data);
+      }
+      if (user) {
+        login(user);
         navigate("/profile", { replace: true });
       }
     },

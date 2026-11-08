@@ -1,11 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/features/auth/context/authContext";
-import type { User } from "@/types/User";
+import type { User } from "@/types/userModel";
 import { useState, type ChangeEvent } from "react";
 import useSendMsg from "../../hooks/useSendMsg";
 import styles from "./InputCard.module.css";
 import useSendAnonymousMsg from "../../hooks/useSendAnonymousMsg";
-
+const DEFAULT_PP: string = import.meta.env.VITE_DEFAULT_PP;
 export default function InputCard({ userData }: { userData: Partial<User> }) {
   const { user } = useAuth();
   const [content, setContent] = useState<string>("");
@@ -42,7 +42,11 @@ export default function InputCard({ userData }: { userData: Partial<User> }) {
     <div className={styles.container}>
       <div className={styles.header}>
         <div className="h-12 w-12 rounded-full overflow-hidden">
-          <img src="selfie1.jpg" className="object-center" alt="User avatar" />
+          <img
+            src={userData?.profilePicture || DEFAULT_PP}
+            className="object-center"
+            alt="User avatar"
+          />
         </div>
         <div>
           <p className="">@{userData?.username ?? "user"}</p>
