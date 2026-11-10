@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { loginApi } from "../api/auth.api";
 import { useAuth } from "../context/authContext";
-
+//login user hook , it handles both 2fa or ordinary login
 export default function useLogin() {
   const navigate = useNavigate();
   const { login } = useAuth();

@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
 import { verifyRegistertionApi } from "../api/auth.api";
-
+//hook to verify registering new user
 export default function useVerifyRegistration() {
   const navigate = useNavigate();
   const { mutate, isPending, error } = useMutation({

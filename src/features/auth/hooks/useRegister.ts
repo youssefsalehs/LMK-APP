@@ -2,7 +2,7 @@ import { useMutation } from "@tanstack/react-query";
 import { registerApi } from "../api/auth.api";
 import { useNavigate } from "react-router";
 import { toast } from "sonner";
-
+// register new user hook
 export default function useRegister() {
   const navigate = useNavigate();
   const { mutate, isPending, error } = useMutation({

@@ -8,8 +8,8 @@ export interface RegisterPayload {
   name: string;
   email: string;
   username: string;
-  dob?: string;
-  gender?: string;
+  dob?: Date | string;
+  gender?: "male" | "female";
   password: string;
 }
 

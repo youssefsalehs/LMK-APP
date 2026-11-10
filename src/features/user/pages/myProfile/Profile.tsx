@@ -34,8 +34,6 @@ export default function ProfilePage() {
   const [copied, setCopied] = useState(false);
   const profilePicturePath = BACKENDURL + "/" + user?.profilePicture;
   const coverPicturePath = BACKENDURL + "/" + user?.coverPicture;
-  console.log(profilePicturePath, coverPicturePath);
-  console.log(user?.profilePicture);
   const profileUrl = `${window.location.origin}/${user?.username || ""}`;
 
   const handleCopyLink = () => {

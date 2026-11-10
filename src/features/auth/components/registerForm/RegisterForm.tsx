@@ -17,26 +17,23 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { z } from "zod";
+import type { RegisterPayload } from "@/types/authModel";
+import { Link } from "react-router";
 import useRegister from "../../hooks/useRegister";
 import Form from "../form/Form";
-import { Link } from "react-router";
 export default function RegisterForm() {
-  type RegisterInput = z.input<typeof registerSchema>;
-  type RegisterOutput = z.output<typeof registerSchema>;
-
   const {
     register,
     handleSubmit,
     control,
     formState: { errors },
-  } = useForm<RegisterInput, unknown, RegisterOutput>({
+  } = useForm<RegisterPayload>({
     defaultValues: {
       name: "",
       username: "",
       email: "",
       password: "",
-      dob: undefined,
+      dob: "",
       gender: undefined,
     },
     resolver: zodResolver(registerSchema),
@@ -46,7 +43,7 @@ export default function RegisterForm() {
     { label: "Female", value: "female" },
   ];
   const { mutate, isPending } = useRegister();
-  const onSubmit: SubmitHandler<RegisterOutput> = (data) => {
+  const onSubmit: SubmitHandler<RegisterPayload> = (data) => {
     mutate(data);
   };
 
@@ -57,7 +54,7 @@ export default function RegisterForm() {
     >
       <form onSubmit={handleSubmit(onSubmit)} className="form">
         <div className="fieldGroup">
-          <InputGroup className={errors.name ? "inputError" : undefined}>
+          <InputGroup className={errors.name && "inputError"}>
             <InputGroupAddon align="inline-start">
               <User className="icon" />
             </InputGroupAddon>

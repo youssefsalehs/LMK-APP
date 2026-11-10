@@ -3,7 +3,7 @@ import { toast } from "sonner";
 import { verifyLoginApi } from "../api/auth.api";
 import { useNavigate } from "react-router";
 import { useAuth } from "../context/authContext";
-
+//hook to verify 2fa login code
 export default function useVerifyLogin() {
   const navigate = useNavigate();
   const { login } = useAuth();

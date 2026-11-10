@@ -15,17 +15,16 @@ const AuthContext = createContext<AuthContextValue | undefined>(undefined);
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const { data, isLoading } = useGetMe();
-
   const queryClient = useQueryClient();
   const userData: User | undefined = data?.data;
   const login = (user: User) => {
-    queryClient.invalidateQueries({ queryKey: QueryKeys.authUser });
+    queryClient.invalidateQueries({ queryKey: QueryKeys.authUser }); //clear any cache before login the user
     queryClient.setQueryData(QueryKeys.authUser, user);
   };
 
   const logout = () => {
     queryClient.setQueryData(QueryKeys.authUser, null);
-    queryClient.clear();
+    queryClient.clear(); //clear all caches after logout
   };
 
   return (

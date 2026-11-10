@@ -1,15 +1,15 @@
-import type { ResendVerificationRegisterationPayload } from "@/types/authModel";
+import type { SendOtpPayload } from "@/types/authModel";
 import { useMutation } from "@tanstack/react-query";
-import { send2FACodeApi } from "../api/auth.api";
 import { toast } from "sonner";
-
+import { send2FACodeApi } from "../api/auth.api";
+// hook to send 2fa enable code
 export default function useSend2FACode() {
   const { mutate, isPending, error } = useMutation({
     mutationFn: ({
       data,
       idempotency,
     }: {
-      data: ResendVerificationRegisterationPayload;
+      data: SendOtpPayload;
       idempotency: string;
     }) => send2FACodeApi(data, idempotency),
     onSuccess: (data) => {

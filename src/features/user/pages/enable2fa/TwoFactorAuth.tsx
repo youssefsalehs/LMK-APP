@@ -11,7 +11,7 @@ export default function TwoFactorAuth() {
   if (user?.twoStepVerification) {
     return (
       <div className="min-h-[90vh] flex items-center justify-center p-4">
-        <div className="w-full max-w-md bg-card border border-border rounded-3xl p-8 shadow-2xl text-card-foreground flex flex-col items-center text-center space-y-4">
+        <div className="w-full max-w-md bg-primary-foreground/90 border border-border rounded-3xl p-8 shadow-2xl text-card-foreground flex flex-col items-center text-center space-y-4">
           <div className="w-16 h-16 bg-primary/10 border border-primary/20 rounded-full flex items-center justify-center text-primary mb-2">
             <ShieldCheck className="w-8 h-8" />
           </div>

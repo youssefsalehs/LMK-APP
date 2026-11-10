@@ -170,5 +170,5 @@
 }
 
 .inputError {
-  @apply !border-destructive !ring-destructive focus-visible:!ring-destructive;
+  @apply border-destructive! ring-destructive! focus-visible:ring-destructive!;
 }

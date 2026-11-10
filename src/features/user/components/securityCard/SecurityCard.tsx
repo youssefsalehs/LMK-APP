@@ -23,7 +23,7 @@ export default function SecurityCard({ newPasswordValue }: SecurityCardProps) {
     <div className="bg-card/60 border border-border/80 rounded-2xl p-5 space-y-4 shadow-sm">
       <div className="flex items-center gap-2 text-primary">
         <KeyRound className="w-4 h-4" />
-        <h3 className="text-xs font-semibold uppercase tracking-wider text-primary-foreground">
+        <h3 className="text-xs font-semibold uppercase tracking-wider text-primary">
           Password Rules
         </h3>
       </div>

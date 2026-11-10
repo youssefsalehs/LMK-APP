@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 import { logoutApi } from "../api/auth.api";
 import { useAuth } from "../context/authContext";
 import { toast } from "sonner";
-
+// logout hook , it clears cookies and clear cached response
 export default function useLogout() {
   const navigate = useNavigate();
   const { logout } = useAuth();
