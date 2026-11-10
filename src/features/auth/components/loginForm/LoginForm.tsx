@@ -5,7 +5,7 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { loginSchema } from "@/schemas/loginSchema";
-import type { TloginFormData } from "@/types/loginFormData";
+
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, LockIcon, Mail } from "lucide-react";
 import { useState } from "react";
@@ -15,6 +15,7 @@ import { Link } from "react-router";
 import useLogin from "../../hooks/useLogin";
 import Form from "../form/Form";
 import styles from "./LoginForm.module.css";
+import type { LoginPayload } from "@/types/authModel";
 export default function LoginForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const { mutate, isPending } = useLogin();
@@ -22,7 +23,7 @@ export default function LoginForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TloginFormData>({
+  } = useForm<LoginPayload>({
     resolver: zodResolver(loginSchema),
     defaultValues: {
       email: "",
@@ -30,7 +31,7 @@ export default function LoginForm() {
     },
   });
 
-  const onSubmit: SubmitHandler<TloginFormData> = (data) => {
+  const onSubmit: SubmitHandler<LoginPayload> = (data) => {
     mutate(data);
   };
 

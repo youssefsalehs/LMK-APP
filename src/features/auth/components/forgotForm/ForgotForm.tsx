@@ -5,39 +5,41 @@ import {
   InputGroupInput,
 } from "@/components/ui/input-group";
 import { forgotPasswordSchema } from "@/schemas/forgotPasswordSchema";
-import type { TforgotPasswordData } from "@/types/forgotPasswordData";
+import type { SendOtpPayload } from "@/types/authModel";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";
 import type { SubmitHandler } from "react-hook-form";
 import { useForm } from "react-hook-form";
+import { useNavigate } from "react-router";
 import useSendOtp from "../../hooks/useSendOtp";
 import Form from "../form/Form";
+import generateOrGetIdempotencyKey from "@/shared/utils/idempotency";
 
 export default function ForgotForm() {
+  const idempotencyKey = generateOrGetIdempotencyKey();
+  const navigate = useNavigate();
+  const { mutate, isPending } = useSendOtp();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TforgotPasswordData>({
+  } = useForm<SendOtpPayload>({
     resolver: zodResolver(forgotPasswordSchema),
     defaultValues: {
       email: "",
     },
   });
-  function generateOrGetIdempotencyKey(): string {
-    const idempotency = localStorage.getItem("idempotency");
-    if (idempotency) {
-      return idempotency;
-    }
-    const newIdempotency = crypto.randomUUID();
-    localStorage.setItem("idempotency", newIdempotency);
-    return newIdempotency;
-  }
-  const idempotencyKey = generateOrGetIdempotencyKey();
-
-  const { mutate, isPending } = useSendOtp();
-  const onSubmit: SubmitHandler<TforgotPasswordData> = (data) => {
-    mutate({ data, idempotency: idempotencyKey });
+  const onSubmit: SubmitHandler<SendOtpPayload> = (data) => {
+    mutate(
+      { data, idempotency: idempotencyKey },
+      {
+        onSuccess: () =>
+          navigate("/auth/reset-password", {
+            state: { email: data.email },
+            replace: true,
+          }),
+      },
+    );
   };
 
   return (

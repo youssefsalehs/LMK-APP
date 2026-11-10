@@ -1,8 +1,6 @@
+import type { BaseResponse } from "./baseResponse";
 import type { User } from "./userModel";
-export interface BaseResponse {
-  success: boolean;
-  message?: string;
-}
+
 export interface UserResponse extends BaseResponse {
   data: User;
 }
@@ -31,6 +29,12 @@ export interface VerifyEmailPayload {
   code: string;
 }
 
-export interface ResendVerificationRegisterationPayload {
+export interface SendOtpPayload {
   email: string;
+}
+
+export interface ResetPasswordPayload {
+  email: string;
+  code: string;
+  newPassword: string;
 }

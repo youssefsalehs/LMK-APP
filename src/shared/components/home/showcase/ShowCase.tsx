@@ -1,4 +1,4 @@
-import MsgCard from "@/features/message/components/msgCard/MsgCard";
+import MsgCard from "@/shared/components/home/msgCard/MsgCard";
 import styles from "./ShowCase.module.css";
 import { motion } from "motion/react";
 
@@ -13,7 +13,7 @@ export default function ShowCase() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className={styles.cardOne}
         >
-          <MsgCard />
+          <MsgCard content="Are you free this weekend?" />
         </motion.div>
 
         <motion.div
@@ -23,7 +23,7 @@ export default function ShowCase() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className={styles.cardTwo}
         >
-          <MsgCard />
+          <MsgCard content="Check out this new song!" />
         </motion.div>
 
         <motion.div
@@ -33,7 +33,7 @@ export default function ShowCase() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className={styles.cardThree}
         >
-          <MsgCard />
+          <MsgCard content="What's your biggest hot take?" />
         </motion.div>
 
         <motion.div
@@ -58,7 +58,7 @@ export default function ShowCase() {
           transition={{ duration: 0.5, delay: 0.5 }}
           className={styles.cardFour}
         >
-          <MsgCard />
+          <MsgCard content="Send me a secret message 🤫" />
         </motion.div>
 
         <motion.div
@@ -68,7 +68,7 @@ export default function ShowCase() {
           transition={{ duration: 0.5, delay: 0.6 }}
           className={styles.cardFive}
         >
-          <MsgCard />
+          <MsgCard content="Rate my fit 1-10 👟" />
         </motion.div>
       </div>
 

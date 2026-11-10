@@ -20,6 +20,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const userData: User | undefined = data?.data;
   const login = (user: User) => {
     queryClient.invalidateQueries({ queryKey: QueryKeys.authUser });
+    queryClient.setQueryData(QueryKeys.authUser, user);
   };
 
   const logout = () => {

@@ -4,7 +4,7 @@ export default function VerificationLogin() {
   const { mutate, isPending } = useVerifyLogin();
   return (
     <div>
-      <VerifyForm mutate={mutate} isPending={isPending} />
+      <VerifyForm mutate={mutate} isPending={isPending} isLogin={true} />
     </div>
   );
 }
