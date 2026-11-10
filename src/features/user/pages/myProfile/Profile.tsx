@@ -114,7 +114,7 @@ export default function ProfilePage() {
             </div>
 
             <div className="min-w-0 pt-1 sm:pb-2 text-primary-foreground">
-              <h2 className="text-2xl sm:text-3xl tracking-tight ">
+              <h2 className="text-2xl sm:text-3xl tracking-tight font-bold">
                 {user?.name || "Anonymous User"}
               </h2>
               <p className=" font-mono text-primary-foreground/70 text-sm sm:text-base mt-0.5">
