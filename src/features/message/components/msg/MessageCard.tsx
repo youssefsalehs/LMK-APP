@@ -20,7 +20,7 @@ export default function MessageCard({ msg }: MessageCardProps) {
   const { mutate } = useMakeRequest();
 
   return (
-    <div className="relative overflow-hidden rounded-3xl bg-primary text-secondary border border-border/60 p-5 sm:p-6 transition-all duration-300 hover:border-[#E727F5]/50 hover:shadow-2xl hover:shadow-[#8027F5]/20 group">
+    <div className="relative overflow-hidden rounded-3xl bg-primary  text-secondary border-x-2 border-b-2 p-5 sm:p-6 transition-all duration-300 border-[#E727F5]/50 hover:shadow-2xl hover:shadow-[#8027F5]/20 group">
       <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r gradientBg opacity-75 group-hover:opacity-100 transition-opacity" />
 
       <div className="space-y-4">
