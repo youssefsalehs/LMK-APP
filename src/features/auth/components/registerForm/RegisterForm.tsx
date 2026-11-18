@@ -4,7 +4,7 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import { registerSchema } from "@/schemas/auth.schema";
+import { registerSchema, type RegisterPayload } from "@/schemas/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Calendar, Lock, Mail, User } from "lucide-react";
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
@@ -17,7 +17,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import type { RegisterPayload } from "@/types/authModel";
+
 import { Link } from "react-router";
 import useRegister from "../../hooks/useRegister";
 import Form from "../form/Form";
@@ -33,7 +33,7 @@ export default function RegisterForm() {
       username: "",
       email: "",
       password: "",
-      dob: "",
+      dob: undefined,
       gender: undefined,
     },
     resolver: zodResolver(registerSchema),

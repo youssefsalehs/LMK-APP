@@ -4,7 +4,7 @@ import { createRoot } from "react-dom/client";
 import App from "./App.tsx";
 import { AuthProvider } from "./features/auth/context/authContext.tsx";
 import "./index.css";
-import ThemeProvider from "./shared/context/ThemeContext.tsx";
+import ThemeProvider from "./context/ThemeContext.tsx";
 const queryClient = new QueryClient();
 createRoot(document.getElementById("root")!).render(
   <StrictMode>

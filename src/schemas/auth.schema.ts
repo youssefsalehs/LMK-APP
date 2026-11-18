@@ -12,15 +12,19 @@ export const loginSchema = z.object({
 export const registerSchema = z.object({
   name: z.string().min(3).max(20).trim(),
   username: z.string().min(3).max(20).trim(),
-  email: z.email("Please enter a valid email address").toLowerCase().trim(),
-  password: z.string().min(8).max(16).trim(),
-
-  dob: z
+  email: z
     .string()
-    .optional()
-    .transform((val) => (val ? new Date(val) : undefined)),
+    .email("Please enter a valid email address")
+    .toLowerCase()
+    .trim(),
+  password: z.string().min(8).max(16).trim(),
+  dob: z.string(),
   gender: z.enum(["male", "female"]).optional(),
 });
+
+export type RegisterFormValues = z.input<typeof registerSchema>;
+
+export type RegisterPayload = z.output<typeof registerSchema>;
 
 export const resetPasswordSchema = z.object({
   email: z.email('Please enter a valid email address"').toLowerCase().trim(),

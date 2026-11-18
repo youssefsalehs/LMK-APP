@@ -1,5 +1,5 @@
 import { useAuth } from "@/features/auth/context/authContext";
-import { EyeIcon, GitPullRequestClosed, Inbox, Menu } from "lucide-react";
+import { EyeIcon, Inbox, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import Logo from "../Logo/Logo";

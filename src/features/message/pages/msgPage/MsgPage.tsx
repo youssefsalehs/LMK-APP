@@ -5,7 +5,7 @@ import { Link } from "react-router";
 import InputCard from "../../components/inputCard/InputCard";
 
 export default function MsgPage() {
-  const { data, isLoading } = useGetProfile();
+  const { data } = useGetProfile();
   const user: User | undefined = data?.data;
   if (!user) {
     return <NotFound />;

@@ -1,6 +1,6 @@
 import { formatDateTime } from "@/shared/utils/formatDate";
 import type { Request } from "@/types/requestModel";
-import { CheckCircle2, Clock, XCircle } from "lucide-react";
+import { CheckCircle2, Clock, Loader2, XCircle } from "lucide-react";
 import useAcceptRequest from "../../hooks/useAcceptRequest";
 import useRejectRequest from "../../hooks/useRejectRequest";
 
@@ -20,19 +20,22 @@ export default function RequestCard({
 
   const { mutate: accept, isPending: isAccepting } = useAcceptRequest();
   const { mutate: reject, isPending: isRejecting } = useRejectRequest();
-  const targetUser = isIncoming ? req.receiver : req.sender;
+
+  const targetUser = isIncoming ? req.sender : req.receiver;
   const username = (targetUser?.username as string) || "Unknown User";
 
   const profilePicturePath = targetUser?.profilePicture
     ? (targetUser.profilePicture.secure_url as string)
     : DEFAULT_PP;
 
+  const isLoading = isAccepting || isRejecting;
+
   return (
     <div className="group flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 p-4 rounded-xl border bg-card text-card-foreground shadow-xs transition-all hover:shadow-md hover:border-primary/30">
       <div className="flex items-start sm:items-center gap-3 flex-1 min-w-0">
         <div className="relative shrink-0">
           <img
-            src={targetUser?.profilePicture ? profilePicturePath : DEFAULT_PP}
+            src={profilePicturePath}
             alt={username}
             className="w-10 h-10 rounded-full object-cover border bg-muted"
           />
@@ -64,11 +67,9 @@ export default function RequestCard({
           </div>
 
           <div className="relative pl-3 border-l-2 border-muted-foreground/30 py-0.5 space-y-0.5">
-            {isIncoming && (
-              <span className="text-xs font-medium text-muted-foreground block">
-                Your message:
-              </span>
-            )}
+            <span className="text-xs font-medium text-muted-foreground block">
+              {isIncoming ? "Message received:" : "Your message:"}
+            </span>
             <p className="text-sm text-muted-foreground italic line-clamp-1">
               "{req.message?.content || "Message content unavailable"}"
             </p>
@@ -86,16 +87,20 @@ export default function RequestCard({
           <div className="flex items-center gap-2 w-full sm:w-auto">
             <button
               type="button"
+              disabled={isLoading}
               onClick={() => accept(req._id)}
-              className="px-3 py-1.5 text-xs font-medium bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors"
+              className="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium bg-emerald-600 text-white rounded-lg hover:bg-emerald-700 transition-colors disabled:opacity-50"
             >
+              {isAccepting && <Loader2 className="w-3 h-3 mr-1 animate-spin" />}
               Accept
             </button>
             <button
               type="button"
+              disabled={isLoading}
               onClick={() => reject(req._id)}
-              className="px-3 py-1.5 text-xs font-medium bg-destructive/10 text-destructive border border-destructive/20 rounded-lg hover:bg-destructive/20 transition-colors"
+              className="inline-flex items-center justify-center px-3 py-1.5 text-xs font-medium bg-destructive/10 text-destructive border border-destructive/20 rounded-lg hover:bg-destructive/20 transition-colors disabled:opacity-50"
             >
+              {isRejecting && <Loader2 className="w-3 h-3 mr-1 animate-spin" />}
               Decline
             </button>
           </div>

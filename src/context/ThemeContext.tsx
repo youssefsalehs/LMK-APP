@@ -1,4 +1,4 @@
-import type { Theme } from "@/types/theme";
+import type { Ttheme } from "@/types/theme";
 import {
   createContext,
   useContext,
@@ -7,15 +7,15 @@ import {
   type ReactNode,
 } from "react";
 interface ThemeContextValue {
-  theme: Theme;
+  theme: Ttheme;
   toggleTheme: () => void;
 }
 
 const ThemeContext = createContext<ThemeContextValue | undefined>(undefined);
 
 export default function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(
-    () => (localStorage.getItem("theme") as Theme | null) ?? "light",
+  const [theme, setTheme] = useState<Ttheme>(
+    () => (localStorage.getItem("theme") as Ttheme | null) ?? "light",
   );
   useEffect(() => {
     localStorage.setItem("theme", theme);

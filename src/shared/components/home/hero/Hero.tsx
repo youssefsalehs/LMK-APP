@@ -6,7 +6,11 @@ import { useAuth } from "@/features/auth/context/authContext";
 
 const float = {
   animate: { y: [0, -20, 0] },
-  transition: { repeat: Infinity, duration: 5, ease: "easeInOut" },
+  transition: {
+    repeat: Infinity,
+    duration: 5,
+    ease: "easeInOut" as const,
+  },
 };
 
 export default function Hero() {
@@ -29,7 +33,11 @@ export default function Hero() {
         <div className={styles.imageWrapperRight}>
           <motion.img
             {...float}
-            transition={{ ...float.transition, delay: 1 }}
+            transition={{
+              repeat: Infinity,
+              duration: 3,
+              ease: "easeInOut" as const,
+            }}
             src="/selfie2.avif"
             className={styles.rightImg}
           />
