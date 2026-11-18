@@ -18,7 +18,7 @@ import useUploadProfilePicture from "../../hooks/useUploadProfilePicture";
 
 const DEFAULT_PP: string = import.meta.env.VITE_DEFAULT_PP;
 const DEFAULT_COVER: string = import.meta.env.VITE_DEFAULT_COVER;
-const BACKENDURL: string = import.meta.env.VITE_API_URL;
+
 interface ChangePhotoHandler {
   (
     e: React.ChangeEvent<HTMLInputElement>,

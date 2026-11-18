@@ -1,24 +1,19 @@
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
-import "./index.css";
 import App from "./App.tsx";
-import ThemeProvider from "./shared/context/ThemeContext.tsx";
-import {
-  QueryClient,
-  QueryClientProvider,
-} from '@tanstack/react-query'
 import { AuthProvider } from "./features/auth/context/authContext.tsx";
+import "./index.css";
+import ThemeProvider from "./shared/context/ThemeContext.tsx";
 const queryClient = new QueryClient();
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-
     <QueryClientProvider client={queryClient}>
       <AuthProvider>
-      <ThemeProvider>
+        <ThemeProvider>
           <App />
-      </ThemeProvider>
-    </AuthProvider>
-      </QueryClientProvider>
-
+        </ThemeProvider>
+      </AuthProvider>
+    </QueryClientProvider>
   </StrictMode>,
 );
