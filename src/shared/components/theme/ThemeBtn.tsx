@@ -10,7 +10,7 @@ export default function ThemeBtn() {
       size="icon"
       onClick={toggleTheme}
       variant={"secondary"}
-      className=" cursor-pointer size-12 z-50 rounded-full"
+      className="fixed right-5 bottom-5 cursor-pointer size-12 z-50 rounded-2xl "
     >
       {theme === "dark" ? (
         <Sun className="size-6" />

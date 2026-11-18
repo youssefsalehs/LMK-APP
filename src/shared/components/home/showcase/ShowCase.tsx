@@ -13,7 +13,7 @@ export default function ShowCase() {
           transition={{ duration: 0.5, delay: 0.1 }}
           className={styles.cardOne}
         >
-          <MsgCard content="Are you free this weekend?" />
+          <MsgCard content="Are you free this weekend?" isAnonymous={false} />
         </motion.div>
 
         <motion.div

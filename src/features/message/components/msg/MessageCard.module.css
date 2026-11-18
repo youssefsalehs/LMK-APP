@@ -1,0 +1,18 @@
+/* MsgCard.module.css */
+@reference "@/index.css";
+
+.container {
+  @apply rounded-2xl overflow-hidden border border-primary bg-primary shadow-xl transition-all duration-300 hover:shadow-2xl;
+}
+
+.header {
+  @apply bg-linear-to-tr py-4 from-[#8027F5] via-[#E727F5] to-[#F5279C] text-white font-bold;
+}
+
+.headerText {
+  @apply font-extrabold text-xl tracking-tight;
+}
+
+.content {
+  @apply py-5 px-4 text-center font-medium text-white/90;
+}

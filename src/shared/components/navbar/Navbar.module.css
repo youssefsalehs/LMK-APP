@@ -1,7 +1,7 @@
 @reference "@/index.css";
 
 .nav {
-  @apply relative flex items-center justify-between p-6;
+  @apply relative flex items-center justify-between p-4;
 }
 
 .links {
@@ -42,4 +42,8 @@
 
 .mobileLink {
   @apply block hover:bg-primary/20 p-2 rounded-lg;
+}
+
+.navLink {
+  @apply text-lg md:text-xl font-bold text-primary-foreground;
 }
