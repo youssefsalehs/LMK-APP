@@ -9,7 +9,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { resetPasswordSchema } from "@/schemas/resetPasswordSchema";
+import { resetPasswordSchema } from "@/schemas/auth.schema";
 import type { ResetPasswordPayload } from "@/types/authModel";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { REGEXP_ONLY_DIGITS } from "input-otp";

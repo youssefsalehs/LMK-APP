@@ -4,7 +4,7 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from "@/components/ui/input-otp";
-import { verifyOtpSchema } from "@/schemas/verifyOtpSchema";
+import { verifyOtpSchema } from "@/schemas/auth.schema";
 import generateOrGetIdempotencyKey from "@/shared/utils/idempotency";
 import type { VerifyEmailPayload } from "@/types/authModel";
 import { zodResolver } from "@hookform/resolvers/zod";

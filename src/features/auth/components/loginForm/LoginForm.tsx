@@ -4,7 +4,7 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import { loginSchema } from "@/schemas/loginSchema";
+import { loginSchema } from "@/schemas/auth.schema";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff, LockIcon, Mail } from "lucide-react";

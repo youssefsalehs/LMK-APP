@@ -4,7 +4,7 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import { forgotPasswordSchema } from "@/schemas/forgotPasswordSchema";
+import { forgotPasswordSchema } from "@/schemas/auth.schema";
 import type { SendOtpPayload } from "@/types/authModel";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Mail } from "lucide-react";

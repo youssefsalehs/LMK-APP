@@ -4,7 +4,7 @@ import {
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
-import { registerSchema } from "@/schemas/registerSchema";
+import { registerSchema } from "@/schemas/auth.schema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Calendar, Lock, Mail, User } from "lucide-react";
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
