@@ -16,7 +16,7 @@ export async function getAllMsgsForUserApi(
   page: number,
 ): Promise<AllMessagesResponse> {
   const res = await api.get<AllMessagesResponse>(
-    `/api/v1/message?page=${page}&limit=5`,
+    `/api/v1/message?page=${page}&limit=6`,
   );
   return res.data;
 }

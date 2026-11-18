@@ -8,7 +8,6 @@ export default function Header({
   meta: MetaData;
   type: "incoming" | "sent";
 }) {
-  // Define dynamic text based on the type prop
   const content = {
     incoming: {
       title: "Incoming Reveal Requests",
