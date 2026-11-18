@@ -17,10 +17,9 @@ export default function InputCard({ userData }: { userData: Partial<User> }) {
   }
 
   function handleSend() {
-    console.log(user?._id);
     if (user?._id && userData?._id && content.trim()) {
       return mutate(
-        { content, sender: user._id, receiver: userData._id },
+        { content, sender: user?._id, receiver: userData?._id },
         {
           onSuccess: () => {
             setContent("");
@@ -43,7 +42,11 @@ export default function InputCard({ userData }: { userData: Partial<User> }) {
       <div className={styles.header}>
         <div className="h-12 w-12 rounded-full overflow-hidden">
           <img
-            src={userData?.profilePicture || DEFAULT_PP}
+            src={
+              userData?.profilePicture
+                ? userData.profilePicture.secure_url
+                : DEFAULT_PP
+            }
             className="object-center"
             alt="User avatar"
           />

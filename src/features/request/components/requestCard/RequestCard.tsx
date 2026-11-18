@@ -5,7 +5,6 @@ import useAcceptRequest from "../../hooks/useAcceptRequest";
 import useRejectRequest from "../../hooks/useRejectRequest";
 
 const DEFAULT_PP: string = import.meta.env.VITE_DEFAULT_PP;
-const BACKENDURL: string = import.meta.env.VITE_API_URL;
 
 export default function RequestCard({
   req,
@@ -25,7 +24,7 @@ export default function RequestCard({
   const username = (targetUser?.username as string) || "Unknown User";
 
   const profilePicturePath = targetUser?.profilePicture
-    ? `${BACKENDURL}/${targetUser.profilePicture}`
+    ? (targetUser.profilePicture.secure_url as string)
     : DEFAULT_PP;
 
   return (

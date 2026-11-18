@@ -6,12 +6,10 @@ import Logo from "../Logo/Logo";
 import styles from "./Navbar.module.css";
 
 const DEFAULT_PP: string = import.meta.env.VITE_DEFAULT_PP;
-const BACKENDURL: string = import.meta.env.VITE_API_URL;
-
 export default function Navbar() {
   const { user } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-  const profilePicturePath = BACKENDURL + "/" + user?.profilePicture;
+  const profilePicturePath = user?.profilePicture?.secure_url;
 
   useEffect(() => {
     const handleScroll = () => {

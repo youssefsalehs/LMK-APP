@@ -9,11 +9,16 @@ interface MessageCardProps {
 }
 
 const DEFAULT_PP: string = import.meta.env.VITE_DEFAULT_PP;
-const BACKENDURL: string = import.meta.env.VITE_API_URL;
 
 export default function MessageCard({ msg }: MessageCardProps) {
-  const profilePicturePath = BACKENDURL + "/" + msg?.sender?.profilePicture;
+  const sender =
+    typeof msg?.sender === "object" && msg?.sender !== null ? msg.sender : null;
+
+  const profilePicturePath = sender?.profilePicture?.secure_url || DEFAULT_PP;
+  const username = sender?.username;
+
   const { mutate } = useMakeRequest();
+
   return (
     <div className="relative overflow-hidden rounded-3xl bg-primary text-secondary border border-border/60 p-5 sm:p-6 transition-all duration-300 hover:border-[#E727F5]/50 hover:shadow-2xl hover:shadow-[#8027F5]/20 group">
       <div className="absolute top-0 left-0 right-0 h-1 bg-linear-to-r gradientBg opacity-75 group-hover:opacity-100 transition-opacity" />
@@ -31,7 +36,7 @@ export default function MessageCard({ msg }: MessageCardProps) {
                 {!msg.hasRequestedReveal && (
                   <button
                     onClick={() => mutate(msg._id)}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary hover:bg-[#E727F5]/1w0 text-secondary-foreground hover:text-[#E727F5] border border-border transition-colors font-medium text-xs cursor-pointer"
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-secondary hover:bg-[#E727F5]/10 text-secondary-foreground hover:text-[#E727F5] border border-border transition-colors font-medium text-xs cursor-pointer"
                     title="Reveal sender"
                   >
                     <Eye className="w-3.5 h-3.5" />
@@ -42,19 +47,15 @@ export default function MessageCard({ msg }: MessageCardProps) {
             ) : (
               <div className="flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-secondary border border-border text-secondary-foreground">
                 <img
-                  src={
-                    msg?.sender?.profilePicture
-                      ? profilePicturePath
-                      : DEFAULT_PP
-                  }
-                  alt={msg?.sender?.username || "User"}
+                  src={profilePicturePath}
+                  alt={username || "User"}
                   className="w-6 h-6 rounded-full object-cover ring-1 ring-border"
                 />
                 <Link
-                  to={`/${msg?.sender?.username}`}
+                  to={username ? `/${username}` : "#"}
                   className="font-bold text-sm text-primary hover:text-[#E727F5] transition-colors"
                 >
-                  @{msg?.sender?.username || "Unknown"}
+                  @{username || "Unknown"}
                 </Link>
               </div>
             )}

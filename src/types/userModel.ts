@@ -25,7 +25,7 @@ export interface User {
   createdAt: string | null;
   updatedAt: string | null;
   gender?: Gender;
-  profilePicture?: string;
+  profilePicture?: { secure_url: string; public_id: string };
   twoStepVerification: boolean;
-  coverPicture?: string;
+  coverPicture?: { secure_url: string; public_id: string };
 }

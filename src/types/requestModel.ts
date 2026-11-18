@@ -7,11 +7,15 @@ export interface Request {
     content: string;
     createdAt: string;
   };
-  receiver: { _id: string; username: string; profilePicture?: string };
+  receiver: {
+    _id: string;
+    username: string;
+    profilePicture?: { secure_url: string; public_id: string };
+  };
   sender: {
     _id: string;
     username: string;
-    profilePicture?: string;
+    profilePicture?: { secure_url: string; public_id: string };
   };
   status: "pending" | "accepted" | "rejected";
   createdAt: string;

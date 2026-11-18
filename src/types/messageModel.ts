@@ -4,10 +4,14 @@ export interface Message {
   _id: string;
   content: string;
   receiver: string;
-  sender?: {
-    username: string;
-    profilePicture?: string;
-  };
+  sender?:
+    | string
+    | {
+        _id?: string;
+        username: string;
+        profilePicture?: { secure_url: string; public_id: string };
+      };
+
   isDeleted: boolean;
   isAnonymous: boolean;
   hasRequestedReveal?: boolean;

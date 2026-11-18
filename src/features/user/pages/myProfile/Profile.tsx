@@ -32,8 +32,8 @@ export default function ProfilePage() {
   const { mutate: mutateProfilePic } = useUploadProfilePicture();
   const { mutate: mutateCoverPic } = useUploadCoverPicture();
   const [copied, setCopied] = useState(false);
-  const profilePicturePath = BACKENDURL + "/" + user?.profilePicture;
-  const coverPicturePath = BACKENDURL + "/" + user?.coverPicture;
+  const profilePicturePath = user?.profilePicture?.secure_url;
+  const coverPicturePath = user?.coverPicture?.secure_url;
   const profileUrl = `${window.location.origin}/${user?.username || ""}`;
 
   const handleCopyLink = () => {
