@@ -6,7 +6,7 @@ import {
 import Form from "@/features/auth/components/form/Form";
 import { useAuth } from "@/features/auth/context/authContext";
 import useVerify2FA from "@/features/auth/hooks/useVerify2FA";
-import { verifyOtpSchema } from "@/schemas/verifyOtpSchema";
+import { verifyOtpSchema } from "@/schemas/auth.schema";
 import type { VerifyEmailPayload } from "@/types/authModel";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { REGEXP_ONLY_DIGITS } from "input-otp";

@@ -2,13 +2,14 @@ import styles from "./MovingSection.module.css";
 import { motion } from "motion/react";
 
 const items = [
-  "send me your confessions",
-  "ask me anything",
-  "not gonna lie",
-  "send me a never have I ever",
-  "describe me in 3 words",
-  "share an opinion that’ll get you cancelled",
-  "tell me who your crush is",
+  "drop your most unpopular opinion",
+  "let me know",
+  "what's a song you have on repeat?",
+  "assume something about me",
+  "spill a secret no one knows",
+  "give me a dare to post on my story",
+  "rate my vibe from 1 to 10",
+  "what's the best advice you've ever got?",
 ];
 
 export default function MovingSection() {

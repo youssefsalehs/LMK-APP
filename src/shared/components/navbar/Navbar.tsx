@@ -1,5 +1,5 @@
 import { useAuth } from "@/features/auth/context/authContext";
-import { Menu } from "lucide-react";
+import { EyeIcon, GitPullRequestClosed, Inbox, Menu } from "lucide-react";
 import { useEffect, useState } from "react";
 import { Link } from "react-router";
 import Logo from "../Logo/Logo";
@@ -33,10 +33,10 @@ export default function Navbar() {
         {user && (
           <div className="hidden md:flex items-center gap-6 px-4">
             <Link to="/messages" className={styles.navLink}>
-              Messages
+              <Inbox />
             </Link>
             <Link to="/sent-requests" className={styles.navLink}>
-              Requests
+              <EyeIcon />
             </Link>
           </div>
         )}
@@ -61,19 +61,20 @@ export default function Navbar() {
       </div>
 
       {isOpen && user && (
-        <div className="absolute z-50 rounded-2xl top-full left-0 w-full bg-primary-foreground text-primary flex flex-col p-4 gap-3 md:hidden shadow-lg">
+        <div className="absolute z-50 rounded-2xl top-full left-0 w-full bg-primary text-primary flex flex-col p-4 gap-3 md:hidden shadow-lg">
           <Link
             to="/messages"
             onClick={() => setIsOpen(false)}
             className={styles.navLink}
           >
-            Messages
+            <Inbox /> inbox
           </Link>
           <Link
             to="/sent-requests"
             onClick={() => setIsOpen(false)}
             className={styles.navLink}
           >
+            <EyeIcon />
             Requests
           </Link>
         </div>
