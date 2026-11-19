@@ -36,6 +36,12 @@ export default function InputCard({ userData }: { userData: Partial<User> }) {
       },
     );
   }
+  function handleKeyDown(e: KeyboardEvent) {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      handleSend();
+    }
+  }
 
   return (
     <div className={styles.container}>
@@ -62,6 +68,7 @@ export default function InputCard({ userData }: { userData: Partial<User> }) {
           value={content}
           rows={5}
           onChange={handleChange}
+          onKeyDown={handleKeyDown}
           className={styles.input}
         />
         <div className="absolute bottom-0 flex gap-2 right-0 m-4">
