@@ -6,6 +6,7 @@ import useSendMsg from "../../hooks/useSendMsg";
 import styles from "./InputCard.module.css";
 import useSendAnonymousMsg from "../../hooks/useSendAnonymousMsg";
 const DEFAULT_PP: string = import.meta.env.VITE_DEFAULT_PP;
+import type { KeyboardEvent } from "react";
 export default function InputCard({ userData }: { userData: Partial<User> }) {
   const { user } = useAuth();
   const [content, setContent] = useState<string>("");
@@ -36,7 +37,7 @@ export default function InputCard({ userData }: { userData: Partial<User> }) {
       },
     );
   }
-  function handleKeyDown(e: KeyboardEvent) {
+  function handleKeyDown(e: KeyboardEvent<HTMLTextAreaElement>) {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       handleSend();
