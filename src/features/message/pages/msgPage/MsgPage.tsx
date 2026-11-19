@@ -1,6 +1,7 @@
 import useGetProfile from "@/features/user/hooks/useGetUsersProfile";
 import NotFound from "@/shared/pages/notfound/NotFound";
 import type { User } from "@/types/userModel";
+import { ArrowLeft } from "lucide-react";
 import { Link } from "react-router";
 import InputCard from "../../components/inputCard/InputCard";
 
@@ -13,6 +14,12 @@ export default function MsgPage() {
 
   return (
     <div className="gradientBg bg-linear-to-br min-h-screen flex flex-col gap-16 items-center justify-center p-4">
+      <Link
+        to={"/"}
+        className="absolute top-20 left-3 md:left-20 flex items-center gap-1  bg-primary text-primary-foreground px-8 rounded-full"
+      >
+        <ArrowLeft size={15} /> back to home
+      </Link>
       <InputCard userData={user} />
       {!user && (
         <Link
