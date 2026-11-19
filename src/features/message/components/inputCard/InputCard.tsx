@@ -54,7 +54,7 @@ export default function InputCard({ userData }: { userData: Partial<User> }) {
                 ? userData.profilePicture.secure_url
                 : DEFAULT_PP
             }
-            className="object-center"
+            className="h-full w-full object-cover object-center"
             alt="User avatar"
           />
         </div>
